@@ -18,5 +18,12 @@ pipeline {
                 sh 'python3 -m pytest'
             }
         }
+        stage('Vulnerability Scan - Docker Trivy') {
+            steps {
+
+               sh "sed -i 's#token_github#${TOKEN}#g' trivy-image-scan.sh"      
+               sh "sudo bash trivy-image-scan.sh"
+            }
+       }
     }
 }
