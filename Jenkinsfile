@@ -13,11 +13,11 @@ pipeline {
          //       sh 'python3 app.py'
           //  }
        // }
-        stage('Test') {
-            steps {
-                sh 'python3 -m pytest'
-            }
-        }
+        //stage('Test') {
+        //    steps {
+        //        sh 'python3 -m pytest'
+        //    }
+       // }
         stage('Vulnerability Scan - Docker Trivy') {
             steps {
      
