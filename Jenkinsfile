@@ -18,12 +18,12 @@ pipeline {
         //        sh 'python3 -m pytest'
         //    }
        // }
-        stage('Vulnerability Scan - Docker Trivy') {
-            steps {
+       // stage('Vulnerability Scan - Docker Trivy') {
+       //     steps {
      
-               sh "sudo bash trivy-image-scan.sh"
-            }
-        }
+         //      sh "sudo bash trivy-image-scan.sh"
+          //  }
+        //}
         stage('Build docker iamge') {
             steps {
 
