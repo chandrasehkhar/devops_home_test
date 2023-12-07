@@ -20,10 +20,25 @@ pipeline {
         }
         stage('Vulnerability Scan - Docker Trivy') {
             steps {
-
-               sh "sed -i 's#token_github#${TOKEN}#g' trivy-image-scan.sh"      
+     
                sh "sudo bash trivy-image-scan.sh"
             }
+        }
+        stage('Build docker iamge') {
+            steps {
+
+               sh 'docker build -t vadlakondasathya/first:latest .'
+               }
+        }
+        stage('push docker iamge') {
+            steps {
+                withCredential([string(credentialId: 'docker-pwd', variable: 'dockerHubPwd')]){
+                    sh "docker login -u vadlakondasathya -p ${dockerHubPwd}"
+                }
+
+                sh 'docker push vadlakondasathya/first:latest .'
+               }
+        }
        }
     }
-}
+
